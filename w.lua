@@ -96,3 +96,34 @@ AutoFarmTab:AddToggle({
     end
 })
 
+
+
+
+
+local ShopTab = Window:MakeTab({
+    Name = "Shop/Misc",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
+})
+
+ShopTab::AddButton({
+    Name = "Daily Diamond",
+    Default = false,
+    Callback = function(Value)
+        local args = {
+            [1] = "SmallDailyDiamonds"
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("DailyRewards_Redeem"):InvokeServer(unpack(args))        
+    end
+})
+
+
+
+ShopTab::AddButton({
+    Name = "Obby1 Complete",
+    Default = false,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.1801147460938, 17.983732223510742, -211.67022705078125)
+    end
+})
