@@ -1,4 +1,3 @@
--- Load Orion library
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 local Player = game.Players.LocalPlayer
 
@@ -40,65 +39,48 @@ local HomeTab = Window:MakeTab({
 })
 HomeTab:AddParagraph("Home", "Thanks for using the script!")
 
--- Function to claim free ranks 1 to 99 after waiting for 1 second
-local function ClaimFreeRanks()
-    for i = 1, 20 do
+-- Function to claim free ranks after waiting for a short duration
+local function ClaimFreeRanks(startRank, endRank)
+    for i = startRank, endRank do
         wait(0.1)
         ClaimRankReward(i)
     end
 end
-
 
 AutoFarmTab:AddButton({
     Name = "Free Ranks 1-20",
     Default = false,
     Callback = function(Value)
-        ClaimFreeRanks()
+        ClaimFreeRanks(1, 20)
     end
 })
-
-
-local function ClaimFreeRanks1()
-    for i = 20, 32 do
-        wait(0.1)
-        ClaimRankReward(i)
-    end
-end
-
 
 AutoFarmTab:AddButton({
     Name = "Free Ranks 20-32",
     Default = false,
     Callback = function(Value)
-        ClaimFreeRanks1()
+        ClaimFreeRanks(20, 32)
     end
 })
 
-local isautorank = false
-function autorank()
-	while isautorank do
-        for i = 1, 32 do
-            wait(0.1)
-            ClaimRankReward(i)
-        end
-	end
+local isAutoRank = false
+function autoRank()
+    while isAutoRank do
+        ClaimFreeRanks(1, 32)
+        wait(0.1)
+    end
 end
-
 
 AutoFarmTab:AddToggle({
     Name = "Auto Rank",
     Default = false,
     Callback = function(Value)
-        isautorank = Value 
+        isAutoRank = Value 
         if Value then
-            autorank()
+            autoRank()
         end
     end
 })
-
-
-
-
 
 local ShopTab = Window:MakeTab({
     Name = "Shop/Misc",
@@ -106,21 +88,16 @@ local ShopTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-ShopTab::AddButton({
+ShopTab:AddButton({
     Name = "Daily Diamond",
     Default = false,
     Callback = function(Value)
-        local args = {
-            [1] = "SmallDailyDiamonds"
-        }
-        
+        local args = {[1] = "SmallDailyDiamonds"}
         game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("DailyRewards_Redeem"):InvokeServer(unpack(args))        
     end
 })
 
-
-
-ShopTab::AddButton({
+ShopTab:AddButton({
     Name = "Obby1 Complete",
     Default = false,
     Callback = function(Value)
