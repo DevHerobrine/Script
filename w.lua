@@ -1,229 +1,98 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+-- Load Orion library
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 local Player = game.Players.LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "Lucas Script", HidePremium = false, SaveConfig = true, IntroText = "Lucas Script", ConfigFolder = "LucasScript"})
 
+-- Create a window
+local Window = OrionLib:MakeWindow({
+    Name = "Lucas Script",
+    HidePremium = false,
+    SaveConfig = true,
+    IntroText = "Lucas Script",
+    ConfigFolder = "LucasScript"
+})
+
+-- Notification for login
 OrionLib:MakeNotification({
-	Name = "Logged in!",
-	Content = "You are logged in as"..Player.Name.." ",
-	Image = "rbxassetid://4483345998",
-	Time = 5
+    Name = "Logged in!",
+    Content = "You are logged in as " .. Player.Name .. " ",
+    Image = "rbxassetid://4483345998",
+    Time = 5
 })
 
-local HomeTab = Window:MakeTab({
-	Name = "Home",
-	Icon = "rbxassetid://6693712950",
-	PremiumOnly = false
-})
+-- Function to handle ranking reward claim
+local function ClaimRankReward(rank)
+    local args = {[1] = rank}
+    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
+end
 
-HomeTab:AddParagraph("Home","Thanks for using we script!")
-
+-- Create AutoFarm tab
 local AutoFarmTab = Window:MakeTab({
-	Name = "AutoFarm",
-	Icon = "rbxassetid://6693712950",
-	PremiumOnly = false
+    Name = "AutoFarm",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
 })
 
+-- Add a paragraph to Home tab
+local HomeTab = Window:MakeTab({
+    Name = "Home",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
+})
+HomeTab:AddParagraph("Home", "Thanks for using the script!")
+
+-- Function to claim free ranks 1 to 99 after waiting for 1 second
+local function ClaimFreeRanks()
+    for i = 1, 20 do
+        wait(0.1)
+        ClaimRankReward(i)
+    end
+end
+
+
 AutoFarmTab:AddButton({
-    Name = "Rank 1",
+    Name = "Free Ranks 1-20",
     Default = false,
     Callback = function(Value)
-        local args = {
-            [1] = 1
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
+        ClaimFreeRanks()
     end
 })
 
 
+local function ClaimFreeRanks1()
+    for i = 20, 32 do
+        wait(0.1)
+        ClaimRankReward(i)
+    end
+end
+
+
 AutoFarmTab:AddButton({
-    Name = "Rank 2",
+    Name = "Free Ranks 20-32",
     Default = false,
     Callback = function(Value)
-        local args = {
-            [1] = 2
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
+        ClaimFreeRanks1()
     end
 })
 
-AutoFarmTab:AddButton({
-    Name = "Rank 3",
+local isautorank = false
+function autorank()
+	while isautorank do
+        for i = 1, 32 do
+            wait(0.1)
+            ClaimRankReward(i)
+        end
+	end
+end
+
+
+AutoFarmTab:AddToggle({
+    Name = "Auto Rank",
     Default = false,
     Callback = function(Value)
-        local args = {
-            [1] = 3
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
+        isautorank = Value 
+        if Value then
+            autorank()
+        end
     end
 })
 
-AutoFarmTab:AddButton({
-    Name = "Rank 4",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 4
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 5",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 5
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 6",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 6
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 7",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 7
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 8",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 8
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 9",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 9
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 10",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 10
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 11",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 11
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 12",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 12
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 13",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 13
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 14",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 14
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 15",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 15
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 16",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 16
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
-
-AutoFarmTab:AddButton({
-    Name = "Rank 17",
-    Default = false,
-    Callback = function(Value)
-        local args = {
-            [1] = 17
-        }
-        
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-    end
-})
