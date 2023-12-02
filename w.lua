@@ -105,3 +105,12 @@ ShopTab:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.1801147460938, 17.983732223510742, -211.67022705078125)
     end
 })
+
+
+ShopTab:AddButton({
+    Name = "Obby1 Complete",
+    Default = false,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-111.25188446044922, 133.70440673828125, -1744.414306640625)
+    end
+})
