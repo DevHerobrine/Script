@@ -27,29 +27,6 @@ HomeTab:AddParagraph("Home", "Thanks for using the script!")
 
 -- Function
 
-
-local function ClaimRankReward(rank)
-    local args = {[1] = rank}
-    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-end
-
-
-local function ClaimFreeRanks(startRank, endRank)
-    for i = startRank, endRank do
-        wait(0.1)
-        ClaimRankReward(i)
-    end
-end
-
-local isAutoRank = false
-
-function autoRank()
-    while isAutoRank do
-        ClaimFreeRanks(1, 32)
-        wait(0.1)
-    end
-end
-
 local isBuyMerch = false
 
 function autobuymerch()
@@ -82,21 +59,6 @@ function AutoCollectGift()
     end
 end
 
-local isBuyMerchTravel = false
-
-function autobuymerchTravel()
-    local args = {
-        [1] = 1
-    }
-
-    while isBuyMerchTravel do
-        for i = 1, 4 do
-            args[1] = i
-            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("TravelingMerchant_RequestPurchase"):InvokeServer(unpack(args))
-            wait(1) -- Wait for 1 second before the next iteration
-        end
-    end
-end
 
 local isautoadvenced = false
 
@@ -135,6 +97,20 @@ ShopTab:AddButton({
         game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
     end
 })
+
+ShopTab:AddButton({
+    Name = "Enchant Vending2 (Spam for get the max)",
+    Default = false,
+    Callback = function(Value)
+        local args = {
+            [1] = "EnchantVendingMachine2",
+            [2] = 1
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
+    end
+})
+
 
 --Potion1
 ShopTab:AddButton({
@@ -200,17 +176,6 @@ ShopTab:AddToggle({
         isBuyMerch = Value 
         if Value then
             autobuymerch()
-        end
-    end 
-})
-
-ShopTab:AddToggle({
-    Name = "Auto Buy MerchantTravel Item",
-    Default = false,
-    Callback = function(Value)
-        isBuyMerchTravel = Value 
-        if Value then
-            autobuymerchTravel()
         end
     end 
 })
