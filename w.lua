@@ -92,11 +92,12 @@ function autobuymerchTravel()
     while isBuyMerchTravel do
         for i = 1, 4 do
             args[1] = i
-            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("TravelingMerchant_RequestPurchase"):InvokeServer(unpack(args))
             wait(1) -- Wait for 1 second before the next iteration
         end
     end
 end
+
 
 --Patched
 local RankTab = Window:MakeTab({
