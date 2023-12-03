@@ -368,10 +368,7 @@ function autowin()
         local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
     
         for _, shake in ipairs(shakeFolder:GetChildren()) do
-            if shake:IsA("Union") then
-                shake.Position = humanoidRootPart.Position
-            
-            end
+            shake.Position = humanoidRootPart.Position
         end
     end
 end
