@@ -325,7 +325,7 @@ MiscTab:AddButton({
 })
 
 local EggTab = Window:MakeTab({
-    Name = "Misc",
+    Name = "Egg/Relic",
     Icon = "rbxassetid://6693712950",
     PremiumOnly = false
 })
@@ -341,6 +341,8 @@ function autohatch()
         game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Eggs_RequestPurchase"):InvokeServer(unpack(args))
     end        
 end
+
+
 EggTab:AddToggle({
     Name = "Last Egg Open",
     Default = false,
@@ -351,3 +353,40 @@ EggTab:AddToggle({
         end
     end 
 })
+
+
+local isautowin = false
+function autowin()
+    while isautowin do
+        wait(1)
+        local shakeFolder = game.Workspace.__THINGS.ShinyRelics-- Assuming Collectibles is a Folder in Workspace
+        local character = game.Players.LocalPlayer.Character
+        if not character then
+            return
+        end
+    
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+        for _, shake in ipairs(shakeFolder:GetChildren()) do
+            if shake:IsA("Union") then
+                shake.Position = humanoidRootPart.Position
+            
+            end
+        end
+    end
+end
+
+
+
+
+EggTab:AddToggle({
+    Name = "AutoRelic",
+    Default = false,
+    Callback = function(Value)
+        isautowin = Value 
+        if Value then
+            autowin()
+        end
+    end
+})
+
