@@ -83,7 +83,7 @@ RankTab:AddToggle({
         if Value then
             autoRank()
         end
-    end
+    end 
 })
 
 
