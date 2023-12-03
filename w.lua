@@ -84,26 +84,9 @@ AutoFarmTab:AddToggle({
 
 
 local ShopTab = Window:MakeTab({
-    Name = "Misc",
+    Name = "Shop",
     Icon = "rbxassetid://6693712950",
     PremiumOnly = false
-})
-
-ShopTab:AddButton({
-    Name = "Daily Diamond",
-    Default = false,
-    Callback = function(Value)
-        local args = {[1] = "SmallDailyDiamonds"}
-        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("DailyRewards_Redeem"):InvokeServer(unpack(args))        
-    end
-})
-
-ShopTab:AddButton({
-    Name = "Obby1 Complete",
-    Default = false,
-    Callback = function(Value)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.1801147460938, 17.983732223510742, -211.67022705078125)
-    end
 })
 
 
@@ -117,7 +100,29 @@ ShopTab:AddButton({
         }
         
         game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
-        
     end
 })
 
+
+local MiscTab = Window:MakeTab({
+    Name = "Misc",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
+})
+
+MiscTab:AddButton({
+    Name = "Collect Daily Diamond",
+    Default = false,
+    Callback = function(Value)
+        local args = {[1] = "SmallDailyDiamonds"}
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("DailyRewards_Redeem"):InvokeServer(unpack(args))        
+    end
+})
+
+MiscTab:AddButton({
+    Name = "Obby1 Complete",
+    Default = false,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.1801147460938, 17.983732223510742, -211.67022705078125)
+    end
+})
