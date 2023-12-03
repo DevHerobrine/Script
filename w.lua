@@ -86,54 +86,17 @@ local isBuyMerchTravel = false
 
 function autobuymerchTravel()
     local args = {
-        [1] = 2
+        [1] = 1
     }
 
     while isBuyMerchTravel do
-        for i = 1, 4 do
+        for i = 1, 6 do
             args[1] = i
             game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("TravelingMerchant_RequestPurchase"):InvokeServer(unpack(args))
             wait(1) -- Wait for 1 second before the next iteration
         end
     end
 end
-
-
---Patched
-local RankTab = Window:MakeTab({
-    Name = "Rank (Patched)",
-    Icon = "rbxassetid://6693712950",
-    PremiumOnly = false
-})
-
-RankTab:AddButton({
-    Name = "Free Ranks 1-20",
-    Default = false,
-    Callback = function(Value)
-        ClaimFreeRanks(1, 20)
-    end
-})
-
-RankTab:AddButton({
-    Name = "Free Ranks 20-32",
-    Default = false,
-    Callback = function(Value)
-        ClaimFreeRanks(20, 32)
-    end
-})
-
-
-RankTab:AddToggle({
-    Name = "Auto Rank",
-    Default = false,
-    Callback = function(Value)
-        isAutoRank = Value 
-        if Value then
-            autoRank()
-        end
-    end 
-})
-
 
 local ShopTab = Window:MakeTab({
     Name = "Shop",
@@ -225,7 +188,7 @@ ShopTab:AddToggle({
 })
 
 ShopTab:AddToggle({
-    Name = "Auto Buy MerchantTravel Item",
+    Name = "Auto Buy AvencedMerchant",
     Default = false,
     Callback = function(Value)
         isBuyMerchTravel = Value 
