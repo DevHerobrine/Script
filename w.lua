@@ -99,7 +99,7 @@ ShopTab:AddButton({
 })
 
 ShopTab:AddButton({
-    Name = "Enchant Vending2 (Spam for get the max)",
+    Name = "Enchant Vending2 (Gems)",
     Default = false,
     Callback = function(Value)
         local args = {
@@ -114,7 +114,7 @@ ShopTab:AddButton({
 
 --Potion1
 ShopTab:AddButton({
-    Name = "Potion Vending1 (Spam for get the max)",
+    Name = "Potion Vending1",
     Default = false,
     Callback = function(Value)
         local args = {
@@ -128,7 +128,7 @@ ShopTab:AddButton({
 
 --Potion2
 ShopTab:AddButton({
-    Name = "Potion Vending2 (Spam for get the max)",
+    Name = "Potion Vending2",
     Default = false,
     Callback = function(Value)
         local args = {
@@ -139,10 +139,23 @@ ShopTab:AddButton({
         game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
     end
 })
+--potion3
+ShopTab:AddButton({
+    Name = "Potion Vending3(Gems)",
+    Default = false,
+    Callback = function(Value)
+        local args = {
+            [1] = "RarePotionsVendingMachine1",
+            [2] = 1
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
+    end
+})
 
 --Fruit1
 ShopTab:AddButton({
-    Name = "Fruit Vending1 (Spam for get the max)",
+    Name = "Fruit Vending1",
     Default = false,
     Callback = function(Value)
         local args = {
@@ -156,7 +169,7 @@ ShopTab:AddButton({
 
 --Fruit2
 ShopTab:AddButton({
-    Name = "Fruit Vending2 (Spam for get the max)",
+    Name = "Fruit Vending2 ",
     Default = false,
     Callback = function(Value)
         local args = {
@@ -309,4 +322,32 @@ MiscTab:AddButton({
         wait(4)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4504.5224609375, 13.959173202514648, -505.51617431640625)
     end
+})
+
+local EggTab = Window:MakeTab({
+    Name = "Misc",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
+})
+local isautohatch = false
+function autohatch()
+    while isautohatch do
+        wait(0.1)
+        local args = {
+            [1] = "Sakura Egg",
+            [2] = 50
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Eggs_RequestPurchase"):InvokeServer(unpack(args))
+    end        
+end
+EggTab:AddToggle({
+    Name = "Last Egg Open",
+    Default = false,
+    Callback = function(Value)
+        isautohatch = Value 
+        if Value then
+            autohatch()
+        end
+    end 
 })
