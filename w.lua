@@ -210,11 +210,6 @@ ShopTab:AddButton({
         game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
     end
 })
-local args = {
-    [1] = 1
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("TravelingMerchant_RequestPurchase"):InvokeServer(unpack(args))
 
 --Merchant
 ShopTab:AddToggle({
