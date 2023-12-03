@@ -90,9 +90,26 @@ function autobuymerchTravel()
     }
 
     while isBuyMerchTravel do
-        for i = 1, 6 do
+        for i = 1, 4 do
             args[1] = i
             game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("TravelingMerchant_RequestPurchase"):InvokeServer(unpack(args))
+            wait(1) -- Wait for 1 second before the next iteration
+        end
+    end
+end
+
+local isautoadvenced = false
+
+function autoadvenced()
+    local args = {
+        [1] = "AdvancedMerchant",
+        [2] = 1
+    }
+
+    while isautoadvenced do
+        for i = 1, 6 do
+            args[2] = i
+            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(unpack(args))
             wait(1) -- Wait for 1 second before the next iteration
         end
     end
@@ -188,12 +205,23 @@ ShopTab:AddToggle({
 })
 
 ShopTab:AddToggle({
-    Name = "Auto Buy AvencedMerchant",
+    Name = "Auto Buy MerchantTravel Item",
     Default = false,
     Callback = function(Value)
         isBuyMerchTravel = Value 
         if Value then
             autobuymerchTravel()
+        end
+    end 
+})
+
+ShopTab:AddToggle({
+    Name = "Auto Buy AvencedMerchant",
+    Default = false,
+    Callback = function(Value)
+        isautoadvenced = Value 
+        if Value then
+            autoadvenced()
         end
     end 
 })
