@@ -354,25 +354,21 @@ EggTab:AddToggle({
     end 
 })
 
+local isautorelic = false
 
-local isautowin = false
-function autowin()
-    while isautowin do
-        wait(1)
-        local shakeFolder = game.Workspace.__THINGS.ShinyRelics-- Assuming Collectibles is a Folder in Workspace
-        local character = game.Players.LocalPlayer.Character
-        if not character then
-            return
-        end
-    
-        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    
-        for _, shake in ipairs(shakeFolder:GetChildren()) do
-            shake.Position = humanoidRootPart.Position
+function autorelic()
+    local args = {
+        [1] = 1
+    }
+
+    while isautorelic do
+        for i = 1, 50 do
+            args[1] = i
+            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Relic_Found"):InvokeServer(unpack(args))
+            wait(0.1) -- Wait for 1 second before the next iteration
         end
     end
 end
-
 
 
 
@@ -380,9 +376,9 @@ EggTab:AddToggle({
     Name = "AutoRelic",
     Default = false,
     Callback = function(Value)
-        isautowin = Value 
+        isautorelic = Value 
         if Value then
-            autowin()
+            autorelic()
         end
     end
 })
