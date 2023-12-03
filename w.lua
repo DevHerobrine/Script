@@ -76,7 +76,7 @@ function AutoCollectGift()
     while isAutoCollect do
         for i = 1, 12 do
             args[1] = i
-            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Merchant_RequestPurchase"):InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Redeem Free Gift"):InvokeServer(unpack(args))
             wait(1) -- Wait for 1 second before the next iteration
         end
     end
@@ -86,7 +86,7 @@ local isBuyMerchTravel = false
 
 function autobuymerchTravel()
     local args = {
-        [1] = 1
+        [1] = 2
     }
 
     while isBuyMerchTravel do
