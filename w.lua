@@ -52,13 +52,13 @@ end
 
 
 
-local AutoFarmTab = Window:MakeTab({
-    Name = "AutoFarm",
+local RankTab = Window:MakeTab({
+    Name = "Rank (Patched)",
     Icon = "rbxassetid://6693712950",
     PremiumOnly = false
 })
 
-AutoFarmTab:AddButton({
+RankTab:AddButton({
     Name = "Free Ranks 1-20",
     Default = false,
     Callback = function(Value)
@@ -66,7 +66,7 @@ AutoFarmTab:AddButton({
     end
 })
 
-AutoFarmTab:AddButton({
+RankTab:AddButton({
     Name = "Free Ranks 20-32",
     Default = false,
     Callback = function(Value)
@@ -75,7 +75,7 @@ AutoFarmTab:AddButton({
 })
 
 
-AutoFarmTab:AddToggle({
+RankTab:AddToggle({
     Name = "Auto Rank",
     Default = false,
     Callback = function(Value)
