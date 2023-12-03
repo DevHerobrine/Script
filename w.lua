@@ -390,7 +390,7 @@ function autofuse()
         wait(0.1)
         local args = {
             [1] = {
-                ["ba1934265dd24fd182ac736ad3e9c4de"] = 3
+                ["66da4b21140f4c669b8d5dcad9459d0f"] = 3
             }
         }
         
@@ -399,7 +399,7 @@ function autofuse()
 end
 
 EggTab:AddToggle({
-    Name = "Auto Fuse",
+    Name = "Auto Fuse w",
     Default = false,
     Callback = function(Value)
         isautofuse = Value 
