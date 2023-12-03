@@ -128,5 +128,7 @@ MiscTab:AddButton({
     Default = false,
     Callback = function(Value)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(915.1801147460938, 17.983732223510742, -211.67022705078125)
+        wait(4)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(184.27313232421875, 146.7044219970703, -1737.2467041015625)
     end
 })
