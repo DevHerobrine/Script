@@ -108,9 +108,16 @@ ShopTab:AddButton({
 
 
 ShopTab:AddButton({
-    Name = "Obby1 Completew",
+    Name = "Enchant Vending1 (4 Max)",
     Default = false,
     Callback = function(Value)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-111.25188446044922, 133.70440673828125, -1744.414306640625)
+        local args = {
+            [1] = "EnchantVendingMachine1",
+            [2] = 1
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("VendingMachines_Purchase"):InvokeServer(unpack(args))
+        
     end
 })
+
