@@ -1,7 +1,6 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 local Player = game.Players.LocalPlayer
 
--- Create a window
 local Window = OrionLib:MakeWindow({
     Name = "Lucas Script",
     HidePremium = false,
@@ -10,7 +9,6 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "LucasScript"
 })
 
--- Notification for login
 OrionLib:MakeNotification({
     Name = "Logged in!",
     Content = "You are logged in as " .. Player.Name .. " ",
@@ -18,20 +16,8 @@ OrionLib:MakeNotification({
     Time = 5
 })
 
--- Function to handle ranking reward claim
-local function ClaimRankReward(rank)
-    local args = {[1] = rank}
-    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
-end
 
--- Create AutoFarm tab
-local AutoFarmTab = Window:MakeTab({
-    Name = "AutoFarm",
-    Icon = "rbxassetid://6693712950",
-    PremiumOnly = false
-})
 
--- Add a paragraph to Home tab
 local HomeTab = Window:MakeTab({
     Name = "Home",
     Icon = "rbxassetid://6693712950",
@@ -39,13 +25,38 @@ local HomeTab = Window:MakeTab({
 })
 HomeTab:AddParagraph("Home", "Thanks for using the script!")
 
--- Function to claim free ranks after waiting for a short duration
+-- Function
+
+
+local function ClaimRankReward(rank)
+    local args = {[1] = rank}
+    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Ranks_ClaimReward"):FireServer(unpack(args))
+end
+
+
 local function ClaimFreeRanks(startRank, endRank)
     for i = startRank, endRank do
         wait(0.1)
         ClaimRankReward(i)
     end
 end
+
+local isAutoRank = false
+
+function autoRank()
+    while isAutoRank do
+        ClaimFreeRanks(1, 32)
+        wait(0.1)
+    end
+end
+
+
+
+local AutoFarmTab = Window:MakeTab({
+    Name = "AutoFarm",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
+})
 
 AutoFarmTab:AddButton({
     Name = "Free Ranks 1-20",
@@ -63,13 +74,6 @@ AutoFarmTab:AddButton({
     end
 })
 
-local isAutoRank = false
-function autoRank()
-    while isAutoRank do
-        ClaimFreeRanks(1, 32)
-        wait(0.1)
-    end
-end
 
 AutoFarmTab:AddToggle({
     Name = "Auto Rank",
