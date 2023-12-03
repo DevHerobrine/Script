@@ -381,5 +381,30 @@ EggTab:AddToggle({
             autorelic()
         end
     end
+    
 })
 
+local isautofuse = false
+function autofuse()
+    while isautofuse do
+        wait(0.1)
+        local args = {
+            [1] = {
+                ["ba1934265dd24fd182ac736ad3e9c4de"] = 3
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("FuseMachine_Activate"):InvokeServer(unpack(args))
+    end
+end
+
+EggTab:AddToggle({
+    Name = "Auto Fuse",
+    Default = false,
+    Callback = function(Value)
+        isautofuse = Value 
+        if Value then
+            autofuse()
+        end
+    end
+})
