@@ -392,7 +392,7 @@ function autofuse()
 end
 
 EggTab:AddToggle({
-    Name = "Auto Fuse",
+    Name = "Auto Fuse w",
     Default = false,
     Callback = function(Value)
         isautofuse = Value 
