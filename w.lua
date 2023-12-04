@@ -355,7 +355,7 @@ EggTab:AddToggle({
 })
 
 local isautohatch1 = false
-function autohatch()
+function autohatch1()
     while isautohatch1 do
         wait(0.1)
         local args = {
