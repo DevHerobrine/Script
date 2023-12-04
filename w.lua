@@ -383,7 +383,7 @@ function autofuse()
         wait(0.1)
         local args = {
             [1] = {
-                ["13a179a0c6c643cba9a90c0beab12423"] = 3
+                ["f6f52409324a4ca6a9999c867de70638"] = 3
             }
         }
         
