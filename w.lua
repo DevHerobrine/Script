@@ -354,34 +354,27 @@ EggTab:AddToggle({
     end 
 })
 
-local isautorelic = false
-
-function autorelic()
-    local args = {
-        [1] = 1
-    }
-
-    while isautorelic do
-        for i = 1, 50 do
-            args[1] = i
-            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Relic_Found"):InvokeServer(unpack(args))
-            wait(0.1) -- Wait for 1 second before the next iteration
-        end
-    end
+local isautohatch1 = false
+function autohatch()
+    while isautohatch1 do
+        wait(0.1)
+        local args = {
+            [1] = "Egyptian Egg",
+            [2] = 50
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Eggs_RequestPurchase"):InvokeServer(unpack(args))
+    end        
 end
-
-
-
 EggTab:AddToggle({
-    Name = "AutoRelic",
+    Name = "Second Dino Open",
     Default = false,
     Callback = function(Value)
-        isautorelic = Value 
+        isautohatch1 = Value 
         if Value then
-            autorelic()
+            autohatch1()
         end
-    end
-    
+    end 
 })
 
 local isautofuse = false
@@ -390,7 +383,7 @@ function autofuse()
         wait(0.1)
         local args = {
             [1] = {
-                ["66da4b21140f4c669b8d5dcad9459d0f"] = 3
+                ["ba1934265dd24fd182ac736ad3e9c4de"] = 3
             }
         }
         
@@ -399,7 +392,7 @@ function autofuse()
 end
 
 EggTab:AddToggle({
-    Name = "Auto Fuse w",
+    Name = "Auto Fuse",
     Default = false,
     Callback = function(Value)
         isautofuse = Value 
