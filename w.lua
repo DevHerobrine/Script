@@ -383,7 +383,7 @@ function autofuse()
         wait(0.1)
         local args = {
             [1] = {
-                ["ba1934265dd24fd182ac736ad3e9c4de"] = 3
+                ["13a179a0c6c643cba9a90c0beab12423"] = 3
             }
         }
         
@@ -401,3 +401,30 @@ EggTab:AddToggle({
         end
     end
 })
+
+
+local isautofuse1 = false
+function autofuse1()
+    while isautofuse1 do
+        wait(0.1)
+        local args = {
+            [1] = {
+                ["8e43ab5aa12b48ecb8274650d28e556a"] = 3
+            }
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("FuseMachine_Activate"):InvokeServer(unpack(args))
+    end
+end
+
+EggTab:AddToggle({
+    Name = "Auto Fuse1",
+    Default = false,
+    Callback = function(Value)
+        isautofuse1 = Value 
+        if Value then
+            autofuse1()
+        end
+    end
+})
+
