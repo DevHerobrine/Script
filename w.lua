@@ -121,12 +121,12 @@ function autodig()
             game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(ohString1, ohString2, ohVector33)
         end
 
-        wait(1)  -- Wait for 1 second before generating a new vector
+        wait(0.1)  -- Wait for 1 second before generating a new vector
     end
 end
 
 AutofarmTab:AddToggle({
-    Name = "Auto Dig Update",
+    Name = "Auto Dig Update V2",
     Default = false,
     Callback = function(Value)
         isautodig = Value 
