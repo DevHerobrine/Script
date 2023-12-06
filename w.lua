@@ -88,21 +88,25 @@ local isautodig = false
 
 function autodig()
     while isautodig do
-        wait(0.001)
-        
         local ohString1 = "Digsite"
         local ohString2 = "DigBlock"
-        
+
         -- Generate random Vector3 values within specified ranges
         local ohVector33 = Vector3.new(
             math.random(1, 8),   -- x coordinate between 1 and 8
             math.random(1, 20),  -- y coordinate between 1 and 20
             math.random(1, 8)    -- z coordinate between 1 and 8
         )
-        
-        game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(ohString1, ohString2, ohVector33)
+
+        for _ = 1, 5 do
+            wait(0.001)
+            game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(ohString1, ohString2, ohVector33)
+        end
+
+        wait(1)  -- Wait for 1 second before generating a new vector
     end
 end
+
 
 
 AutofarmTab:AddToggle({
