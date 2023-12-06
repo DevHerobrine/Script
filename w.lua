@@ -77,6 +77,48 @@ function autoadvenced()
     end
 end
 
+
+
+local AutofarmTab = Window:MakeTab({
+    Name = "AutoFarm",
+    Icon = "rbxassetid://6693712950",
+    PremiumOnly = false
+})
+local isautodig = false
+
+function autodig()
+    while isautodig do
+        wait(0.001)
+        
+        local ohString1 = "Digsite"
+        local ohString2 = "DigBlock"
+        
+        -- Generate random Vector3 values within specified ranges
+        local ohVector33 = Vector3.new(
+            math.random(1, 8),   -- x coordinate between 1 and 8
+            math.random(1, 20),  -- y coordinate between 1 and 20
+            math.random(1, 8)    -- z coordinate between 1 and 8
+        )
+        
+        game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(ohString1, ohString2, ohVector33)
+    end
+end
+
+
+AutofarmTab:AddToggle({
+    Name = "Auto Dig LOL",
+    Default = false,
+    Callback = function(Value)
+        isautodig = Value 
+        if Value then
+            autodig()
+        end
+    end
+})
+
+
+
+
 local ShopTab = Window:MakeTab({
     Name = "Shop",
     Icon = "rbxassetid://6693712950",
