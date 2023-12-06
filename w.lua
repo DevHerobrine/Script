@@ -86,15 +86,32 @@ local AutofarmTab = Window:MakeTab({
 })
 local isautodig = false
 
+local x = 1  -- Initial value for x
+
+AutofarmTab:AddDropdown({
+    Name = "Dropdown",
+    Default = "1",
+    Options = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+               "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"},
+    Callback = function(Value)
+        x = tonumber(Value) or x  -- Use the selected option as the new value for x
+    end    
+})
+
 function autodig()
     while isautodig do
+        
+        if not isautodig then
+            break  -- Exit the loop if auto dig is disabled
+        end
+
         local ohString1 = "Digsite"
         local ohString2 = "DigBlock"
 
         -- Generate random Vector3 values within specified ranges
         local ohVector33 = Vector3.new(
             math.random(1, 8),   -- x coordinate between 1 and 8
-            math.random(1, 10),  -- y coordinate between 1 and 20
+            x,    -- y coordinate between 1 and the selected dropdown option
             math.random(1, 8)    -- z coordinate between 1 and 8
         )
 
@@ -108,10 +125,8 @@ function autodig()
     end
 end
 
-
-
 AutofarmTab:AddToggle({
-    Name = "Auto Dig ",
+    Name = "Auto Dig Update",
     Default = false,
     Callback = function(Value)
         isautodig = Value 
@@ -120,8 +135,6 @@ AutofarmTab:AddToggle({
         end
     end
 })
-
-
 
 
 local ShopTab = Window:MakeTab({
