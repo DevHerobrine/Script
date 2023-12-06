@@ -94,12 +94,13 @@ function autodig()
         -- Generate random Vector3 values within specified ranges
         local ohVector33 = Vector3.new(
             math.random(1, 8),   -- x coordinate between 1 and 8
-            math.random(1, 20),  -- y coordinate between 1 and 20
+            math.random(1, 10),  -- y coordinate between 1 and 20
             math.random(1, 8)    -- z coordinate between 1 and 8
         )
 
         for _ = 1, 5 do
             wait(0.001)
+            print(ohVector33)
             game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(ohString1, ohString2, ohVector33)
         end
 
@@ -110,7 +111,7 @@ end
 
 
 AutofarmTab:AddToggle({
-    Name = "Auto Dig LOL",
+    Name = "Auto Dig ",
     Default = false,
     Callback = function(Value)
         isautodig = Value 
