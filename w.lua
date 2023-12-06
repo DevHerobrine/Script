@@ -115,18 +115,18 @@ function autodig()
             math.random(1, 8)    -- z coordinate between 1 and 8
         )
 
-        for _ = 1, 5 do
+        for _ = 1, 10 do
             wait(0.001)
             print(ohVector33)
             game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(ohString1, ohString2, ohVector33)
         end
 
-        wait(0.1)  -- Wait for 1 second before generating a new vector
+        wait(0.01)  -- Wait for 1 second before generating a new vector
     end
 end
 
 AutofarmTab:AddToggle({
-    Name = "Auto Dig Update V2",
+    Name = "Auto Dig Update V2.3",
     Default = false,
     Callback = function(Value)
         isautodig = Value 
